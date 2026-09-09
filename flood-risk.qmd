@@ -1,0 +1,648 @@
+---
+title: "Flood Perceptions, Social Capital, and Public Support for Property Buyout Programs"
+author:
+  - "Matthew C. Nowlin^[Associate Professor, Department of Political Science, University of Texas at Arlington. Email: [matthew.nowlin@uta.edu](mailto:matthew.nowlin@uta.edu)]"
+  - "Lauren Greenwood^[M.S. Environmental and Sustainability Studies, College of Charleston, Charleston South Carolina ]"
+bibliography: references.bib
+csl: american-political-science-association.csl
+fig-cap-location: top
+fontfamily: ebgaramond
+link-bibliography: false
+format: 
+  pdf:
+    include-in-header: 
+      text: |
+        \usepackage{setspace}
+        \usepackage{dcolumn}
+        \usepackage{float}
+        \usepackage{amsmath}
+        \usepackage{float}
+        \addtokomafont{disposition}{\rmfamily}
+  docx:
+    reference-doc: /Users/matthewnowlin/Library/CloudStorage/Dropbox/Projects/Manuscript-Files/reference.docx 
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r load data and recodes}
+#| echo: false
+#| include: false
+#| warning: false
+
+source("scripts/recodes.R")
+
+```
+<!-- maybe reorganize hypotheses by section in the lit review like the disaster prepardness paper with welsey -->
+
+**Abstract**: As the impacts of climate change intensify, a growing number of people will be exposed to hazards such as sea-level rise. In many areas, sea-level rise will cause increased flooding and repeated property damage, including homes and businesses. It is expected that many will become "climate migrants" as they begin to relocate from areas repeatedly affected by climate change-induced events. Indeed, some governments are beginning to consider buyout programs, in which the government purchases private property that has been damaged or is at risk of repeated damage. However, little research has examined public support for buyout programs. In this paper, we draw on an original survey of South Carolina residents to examine their support for a state government buyout program. Specifically, we examine buyout support in relation to past flood experience, satisfaction with local infrastructure, social capital, and demographic factors.
+
+_Paper prepared for the Annual Meeting of the Midwest Political Science Association, April 2026_ 
+
+# Introduction 
+
+Climate change will increasingly affect all communities, as natural hazards such as flooding, wildfires, and hurricanes are likely to intensify. As a result, residents of high-risk areas may migrate to other areas. Climate migration is a growing concern for governments worldwide [@hannaManagedRetreatsWhom2021]. 
+
+Communities are considering various adaptation policies and strategies to address climate migration and reduce the risks associated with climate change-induced hazards. One set of strategies involves managed retreat programs, where residents and infrastructure are relocated from high-risk to low-risk areas [@dundonClimateInducedManagedRetreat2021]. Property buyout programs are one approach to managed retreat [@greerHistoricalAssessmentHome2017]. In a property buyout program, governments purchase or take over private property, and residents and businesses are required to relocate. Such programs have been in place in the United States for many years, with the focus largely on flood-prone areas [@greerHazardMitigationClimate2022; @niemann-morrisDivergentPrioritiesFlood2025]. While the programs have been examined, less is known about how the general public views property buyouts in general or what factors might make homeowners more or less likely to accept a buyout, in the abstract. 
+
+In this paper, we use a quota-based sample of South Carolina residents to examine public opinion on property buyout programs. The state of South Carolina experienced a series of hurricane-related major flood events in recent years, including Joaquin (2015), Matthew (2016), and Florence (2018), yet managed retreat strategies have not been widespread across South Carolina [@sidersManagedRetreatUnited2019]. South Carolina’s Office of Resilience (SCOR), created in 2020, has established a statewide buyout program. SCOR’s buyout program is voluntary and allows communities to relocate citizens living in floodplains and return the land to green spaces that can capture floodwater through retention ponds, stormwater parks, or other methods.^[See https://scor.sc.gov/buyouts.]
+
+For our analysis, we examine support among South Carolina residents for a property buyout program as a function of respondents' flood perceptions and experiences, social capital (both bonding and bridging), political ideology, satisfaction with the physical infrastructure in their community, and perceptions of their community's resilience to disasters. Additionally, we examined flood risk and homeowners' willingness to accept a buyout in an experiment that varied the number of disruptive flood days from 7 to 200 per year. 
+
+Overall, we found that greater bonding social capital, greater political conservatism, and longer time at their current address were associated with decreased support for a buyout program. Additionally, increasing concern about flooding, having experienced a flood, and living in a coastal county were associated with increased support. However, contrary to expectations, we found that several community factors, including increased satisfaction with physical infrastructure, viewing their communities as resilient to disasters, and increased bridging social capital, were associated with increased support for a property buyout program. Regarding homeowners' willingness to accept, we found no relationship between the hypothetical number of flood days and the proportion of homeowners who stated they would accept a buyout. In general, willingness to accept a buyout was rated highly regardless of the number of flood days. 
+
+
+# Managed Retreat and Property Buyout Programs in the United States
+
+Climate migrants are people who relocate due to changes in their local environment that affect their living conditions, such as flooding, sea-level rise, impaired water quality, or shoreline erosion. Predicting residents’ decision to leave their homes or relocate is difficult due to many factors, including impacts on mobility, capacity to adapt to changing environmental conditions, and individual tolerance levels [@adamsMigrationHumanAffair2019]. Although there is much uncertainty about the number of people who will migrate due to climate conditions, one estimate by The World Bank expects up to 216 million in-country climate migrants by 2050 [@clementGroundswellPartII2021]. 
+
+Managed retreat is one policy strategy that aims to provide an adaptation method for organized climate migration. Retreat policies facilitate the relocation of residents, businesses, and infrastructure toward more inland communities, and sometimes include compensation for landowners through buyouts [@bongartslebbeDesigningCoastalAdaptation2021]. Retreat policies can include relocating infrastructure, such as public roads and water treatment facilities, to more inland locations that are less threatened by rising seas or out of flood zones. For residents, local governments can purchase land and development rights through fee-simple acquisition from landowners and use them to remove infrastructure, potentially allowing the salt marshes on the coast to migrate landward. Another form of managed retreat includes buyout programs that target flood-prone areas for property acquisition and the removal of infrastructure to create open space and prohibit or restrict future development. Funding for property buyouts comes from the Federal Emergency Management Agency (FEMA), with additional funding available from the Department of Housing and Urban Development (HUD) [@machManagedRetreatVoluntary2019; @PropertyBuyoutsCan2022]. Additionally, states are expected to provide some additional or matching funding. 
+
+Overall, property buyouts are gaining popularity among floodplain managers, who generally consider them an effective way to reduce the risk of repeated exposure to natural hazards [@greerHazardMitigationClimate2022]. Additionally, they are seen as cost-effective [@mandaAssumptionsUnderstandingSuccess2023; @nelsonQuantifyingBenefitsHome2020]. Yet, there are some concerns. For example, obtaining funding can be an arduous process, funding sources can be opaque, and state and local governments often have difficulty meeting their funding requirements [@petersonReviewFundingMechanisms2020; @curran-groomeAssessingFullCosts2021; @curran-groomeComplexitiesCostsFloodplain2022]. There are also equity and social justice concerns [@shiEquitableBuyoutsLearning2022a; @sidersSocialJusticeImplications2019], as programs tend to focus on "whiter" communities rather than communities of color [@elliottRacialInequitiesFederal2020]. Finally, participants may be relocated to another vulnerable area [@mcgheeFirstNoHarm2020]. 
+
+In South Carolina, managed retreat strategies have not been widespread [@sidersManagedRetreatUnited2019]. Yet South Carolina’s Office of Resilience (SCOR) has created a buyout program, demonstrating that such programs will likely become more common in the state in the future. SCOR’s buyout program is voluntary, and communities relocate citizens and return the land to green spaces, which can be used to capture floodwater. The program has received funding from the U.S. Department of Housing and Urban Development (HUD) for parts of the state most heavily impacted by presidentially declared disasters in 2015, 2016, and 2018, and offers resources to facilitate the relocation of residents [@miramontiInterviewMitigationBuyout2024]. 
+
+As of February 2024, a total of six localities in the state of South Carolina have begun the process of SCOR’s voluntary buyout program, with four of those project areas (City of Bennettsville, Darlington County, Town of Nichols, and Dillon County) currently going through the environmental assessment portion, and two project sites (Horry County and Town of Cheraw) where most homes in the project area have already been purchased with the HUD funds [@miramontiInterviewMitigationBuyout2024]. In Horry County, the voluntary buyout program was successful, and 45 of 50 homeowners who received purchase offers have completed the sale. A buyout project in the City of Mullins in Marion County, South Carolina, did not go forward due to a lack of homeowner participation, and generational homeowners and residents expressed concerns over losing ownership of their land [@miramontiInterviewMitigationBuyout2024], demonstrating that length of residency and cultural connections might influence a resident’s willingness to accept a buyout.
+
+Recent work examined the buyout program in the City of Bennettsville, South Carolina, a small, rural county where about 60% of residents are Black [@mukherjiBuyoutsCarolinasPre2024]. The city applied to SCOR's buyout program in 2021 following major flooding from Hurricanes Matthew in 2016 and Florence in 2018. Researchers interviewed 10 individuals, including city and county elected officials, and several community leaders. @mukherjiBuyoutsCarolinasPre2024 found that, 
+
+> local leaders acknowledge that the buyout program can address safety issues faced by residents of the buyout area, but also express concerns about historical racial biases, distrust in government, concerns about lack of alternative housing availability, and disagreements over the compensation offer amounts (112).
+
+These findings underscore the importance of understanding public opinion on property buyout programs. As South Carolina and other states continue to develop managed retreat and property buyout programs, understanding the views of the community will be vital to developing communication that helps ensure trust and understanding of the program on the part of the public.   
+
+# Public Views of Buyout Programs 
+
+To effectively plan and develop buyout programs, it is important to understand how the public views these approaches and the factors that shape those views. Thus far, only a few studies have examined general public opinion about property buyouts. One study examined the views of Canadian residents in flood risk areas on property buyout programs and found general support, but program design elements, including that the program is voluntary and that costs are shared by national and local governments, also drove support [@raikesManagedRetreatHighRisk2023]. Additionally, examining residents of Sweden, @bendzCitizenConcernsClimate2025 found that support for relocating buildings and infrastructure was more likely when flooding was hypothetically expected to occur once a year rather than once every 10 or 50 years.  
+
+The majority of work on public opinion and buyout programs focuses on participants' experiences, including factors that influence households' willingness to accept a buyout and the experiences of those who do. Overall, the research has found several push factors that motivate relocation, and several pull factors that make it more likely to stay. Households are more likely to participate in a buyout program when they have experienced a flood and/or perceived flood risk to be high [@bendzCitizenConcernsClimate2025; @hotardHomeBuyoutRelocation2023; @seebauerShouldStayShould2020; @andoHomeownerWillingnessPay2022; @sansomExploringViableBuyout2025]. However, community attachment makes accepting a buyout less likely [@seebauerShouldStayShould2020; @mukherjiBuyoutProgrammeExperiences2024]. Additionally, beliefs about how their neighbors would respond to a buyout influenced the willingness to pay for an expedited buyout [@andoHomeownerWillingnessPay2022]. Finally, policy design and implementation factors influence the decision to accept a buyout, including that it's voluntary, transparent, and that individuals trust those administering the program [@raikesManagedRetreatHighRisk2023; @mukherjiBuyoutProgrammeExperiences2024; @sidersSocialJusticeImplications2019]. Interestingly, @devriesCitizenshipRightsVoluntary2012 found that participants in several buyout programs across North Carolina, North Dakota, and Texas perceived the program as _less_ voluntary than those who did not participate.  
+
+One of the major pull factors is place attachment, as residents who feel more attached to their homes and their community are less likely to relocate [@mukherjiBuyoutProgrammeExperiences2024; @seebauerShouldStayShould2020; @swapanPlaceAttachmentNatural2021]. One important factor in place attachment is social capital [@binderUpheavalUnpackingDynamic2023]. Social capital, the value that is generated through personal relationships and organizations in a community, has long been noted to play a role in disaster mitigation and resilience [@aldrichBuildingResilienceSocial2012; @collinsEvacuationDecisionMakingHurricane2017; @islamHowBondingBridging2014; @monteilPostDisasterRecoverySociocultural2019; @nowlinSocialCapitalHurricane2021]. There are two types of social capital that are particularly important: bonding and bridging. Bonding social capital refers to the ties individuals have to others in their community, such as friends, neighbors, co-workers, and family. Bridging social capital involves the organizations in one's community that can provide individuals with resources. Regarding social capital in the context of property buyout, @hotardHomeBuyoutRelocation2023 examined the acceptance of a buyout and willingness to relocate as separate questions. They found that bonding social capital made accepting a buyout significantly more likely, and relocating less likely. Additionally, they found that bridging social capital reduced the likelihood of relocating [@hotardHomeBuyoutRelocation2023].  
+
+<!-- add discussion of place-based risk, e.g., coastal county -->
+
+## Hypotheses 
+
+Based on the literature, we can derive a few hypotheses regarding how the public, in general, might view property buyout programs and what factors make it more likely that a homeowner would accept a buyout. As noted, flooding risk, place attachment, and social capital are important factors shaping views on property buyout programs and the willingness to participate. In the following analysis, we examine support for a property buyout program among all respondents and the willingness to accept a buyout among homeowners. We derive several hypotheses, which we group into a three elements, including flooding, community factors, and individual factors. The first set of hypotheses address support for buyout programs in general, and the final hypothesis addresses the willingness of homeowners to accept a buyout.     
+
+### _Flooding_ 
+
+For flooding, we expect both perceptions and experience to influence support for a property buyout program. Specifically, we examine concern about flooding, perceptions that flooding has increased, and flood experience.   
+
+> H1a: _As concern about flooding increases, so does support for a property buyout program_
+
+> H1b: _Those who perceive flooding in their area to have increased will be more likely than others to support a property buyout program_
+
+> H1c: _Those who have experienced a flood will be more likely than others to support a property buyout program_
+
+### _Community Factors_ 
+
+We group several elements together as community factors. As noted, place attachment, including community attachment, is an important factor in the decision to relocate following a disaster. We develop and test several measures of community attachment, including perceptions of community resilience, satisfaction with local government services and infrastructure, and bridging social capital. Additionally, as a final community factor, we examine whether or not respondents live in a coastal county in South Carolina.      
+
+> H2a: _As perceptions of community resilience increase, support for a property buyout program decreases_
+
+> H2b: _As satisfaction with infrastructure increases, support for a property buyout program decreases_
+
+> H2c: _As bridging social capital increases, support for a property buyout program decreases_
+
+> H2d: _Those who live in a coastal county will be more supportive of a property buyout program than those in other areas_
+
+
+### _Individual Factors_ 
+
+Several individual factors are also likely to influence support for property buyouts, including bonding social capital, place attachment through homeownership and time at the current residence, and political beliefs. Bonding social capital is likely to be a pull factor, keeping residents in place. For the place attachment individual factors, home ownership may act as a push because homeowners can benefit from a property buyout, whereas time at their current residence may act as a pull. Finally, since buyout programs are a government program, political beliefs may influence views. For example, conservatives tend to place more responsibility for disaster preparedness on individuals and households rather than governments [@wehdePublicAttributionResponsibility2021].^[However, @hotardHomeBuyoutRelocation2023 found political beliefs to not be a significant factor regarding buyout programs.]          
+
+> H3a: _As bonding social capital increases, support for a property buyout program decreases_
+
+> H3b: _Homeowners are more likely than others to support a property buyout program_
+
+> H3c: _As time at current residence increases, support for a property buyout program decreases_
+
+> H3d: _As political conservatism increases, support for a property buyout program decreases_
+
+
+### _Accept Buyout_ 
+
+In addition to support for property buyout programs in general, we also examined homeowners' willingness to accept a buyout. Specifically, we develop an experiment in which homeowners are presented with a random number of hypothetical disruptive flood days and asked, based on that number, how likely they would be to accept a buyout. We posit the following:   
+
+> H4: _As the number of flood days increases, the likelihood of a stated willingness to accept a buyout increases_
+
+ 
+# Data and Measures 
+
+The data used to test our hypotheses come from a statewide survey of South Carolina residents administered in November-December 2023. The surveys were given in Qualtrics, and respondents were recruited through Cloud Research (https://www.cloudresearch.com) using a quota-based sample matched to the age, gender, and race distributions of South Carolina residents from the US Census. Overall, we obtained `r nrow(scFloodData2)` respondents. 
+
+Our first dependent variable is support for a property buyout program in South Carolina. To measure support for a property buyout program, respondents were given some basic information about the buyout program and were then asked their support on a 1 (strongly oppose) to 7 (strongly support) scale. 
+
+> Property buyouts are a policy for reducing risk to people and communities from severe storms, flooding, wildfires, and other extreme events. Buyouts also reduce costs to homeowners, insurance companies, and the government for rebuilding after events. In a buyout program, the government purchases private properties including homes and businesses that are damaged or at risk. Participating property owners must then relocate.
+
+> On a scale from 1 to 7, with 1 being strongly oppose and 7 being strongly support, please indicate your support for a property buyout program in South Carolina. In this program the federal government would purchase homes and businesses in South Carolina that have been damaged or at risk from natural disasters and the owners would need to move. 
+
+The mean on the 1 to 7 scale was `r round(mean(scFloodData2$buyoutSupportPre, na.rm=TRUE),3)`, which is above the midpoint and indicates some support for property buyout programs in general.
+
+Our second dependent variable measures homeowners' willingness to accept a buyout. As noted, we use an experiment similar to @bendzCitizenConcernsClimate2025, in which we present respondents with a randomly generated number, between 7 and 200, of hypothetical days of disruptive flooding events in their community in a year. Next, we asked homeowners if they would be willing to accept a buyout with that number of flood days per year. 
+
+> Imagine that over the next few years, disruptive flooding events begin to occur in your community [_7-200_] days a year. 
+
+> With the above number of disruptive flooding days per year, how likely would you be to accept a property buyout of your home?
+
+The likelihood to accept was measured on a 1 (very unlikely) to 5 (very likely) scale, with a mean of `r round(mean(scFloodData2$buyoutSupportOwn, na.rm=TRUE),2)`. 
+
+Our independent variables include respondents' concern about and experience with flooding, their social capital, their perceptions of their local community, political ideology, whether they own or rent their home, and several demographic factors, including age, gender, race, education, and income.^[Question wording for each variable is in the appendix.] 
+
+**_Flood Perceptions_**: For flood perceptions, we asked respondents how concerned they are about flooding in their local area, on a 0 (not at all concerned) to 10 (extremely concerned) scale. Next, we asked respondents if they perceived flooding in their area to have been less frequent, stayed the same, or more frequent in recent years. Responses were coded so that a 1=less frequent, 2=stayed the same, and 3=more frequent. We also asked respondents if they had ever experienced a flood, with 1 if they had and 0 if they had not. Overall, the mean of the flood experience variable was `r round(mean(scFloodData2$floodEx, na.rm=TRUE),2)`, indicating that `r round(mean(scFloodData2$floodEx, na.rm=TRUE),2)*100`% of our sample have experienced a flood. 
+
+**_Social Capital_**: To measure bonding social capital, we asked respondents about the number of friends they have in their local community, the number of old classmates with whom they are still in touch, the number of relatives and coworkers they trust, the number of relatives and coworkers that would definitely help them upon request, how many friends, relatives, classmates, and coworkers in their local community have broad connections to others, and how many close contacts have a professional job. Responses were on a 1 (A few/none) to 5 (A lot) scale. We averaged responses on a single 1 to 5 scale, which has a mean of `r round(mean(scFloodData2$scBond, na.rm=TRUE),3)` and a Cronbach's $\alpha$ of `r round(scBondA$alpha, 2)`.     
+
+For bridging social capital, we asked respondents about the groups and organizations in their community, including the overall number, the number of groups with broad social connections, social influence, that represent the respondent's interest, and would help the respondent upon request. Similar to the bonding social capital measure, we average responses into a 1 to 5 scale, with a mean of `r round(mean(scFloodData2$scBridge, na.rm=TRUE),2)` and a Cronbach's $\alpha$ of `r round(scBridgeA$alpha, 2)`.    
+
+**_Community Resilience_**: We asked respondents about their perceptions of their communities resilience to disasters. Specifically, respondents were asked to rate their agreement, on a 1 (strongly disagree) to 7 (strongly disagree) scale, the degree to which their community tries to prevent disasters, prepares for future disasters, provides emergency services during a disaster, and has services and programs to help people after a disaster. Then, we averaged the responses to the four statements into a single, 1 to 7 scale. The scale has a mean of `r round(mean(scFloodData2$commRel, na.rm=TRUE),2)` and an $\alpha$ of `r round(commRelA$alpha, 2)`.    
+
+**_Infrastructure Satisfaction_**: To measure how satisfied respondents are with the physical infrastructure in their community, we asked respondents, on a 1 (very dissatisfied) to 5 (very satisfied) scale, how satisfied they are, on average, with their local government, drinking water services, condition of roads and streets, and their sewer/septic system. We combined the responses into a single scale, which had a mean of `r round(mean(scFloodData2$infraScale, na.rm=TRUE),2)` and an $\alpha$ of `r round(infraA$alpha, 2)`. 
+
+We also asked respondents their political ideology on a 1 (very liberal) to 7 (very conservative) scale, whether or not they live in a county on the coast (Yes=1, No=0), whether they own or rent their home (Own=1, Else=0), how long they lived at their current address (1=less than a year to 4=11+ years), as well as several demographic factors, including age, gender (Male=1, Else=0), race (White=1, Else=0), level of education (1=less than high school to 7=graduate/professional degree), and level of income (1=0-19999 to 7=150000). The descriptive statistics for each of the variables are presented in @tbl-descript.  
+
+
+```{r, create dataset for descriptive statistics}
+#| echo: false
+#| include: false
+#| warning: false
+
+library(modelsummary) 
+
+# vars for descriptive stats
+DescriptVars <- c("concernFlood","floodEx","floodF","commRel","infraScale","scBridge","scBond","coastalCount","ownHome",
+                  "currentAdd","ideology","age","male","white","edu","inc")
+DescriptData <- scFloodData2[DescriptVars]
+
+scFloodDescriptData <- DescriptData %>% 
+  select("Flooding Concern" = "concernFlood",
+        "Flood Experience" = "floodEx",
+        "Flooding Increase" = "floodF", 
+        "Perceived Community Resilience" = "commRel",
+        "Infrastructure Scale" = "infraScale", 
+        "Bridging Social Capital" = "scBridge",
+        "Bonding Social Capital" = "scBond",
+        "Coastal County" = "coastalCount", 
+        "Own Home" = "ownHome",
+        "Time at Current Addres" = "currentAdd", 
+        "Ideology (more conservative)" = "ideology",
+        "Age" = "age", 
+        "Gender (male=1)" = "male",
+        "Race (white=1)" = "white",
+        "Education" = "edu",
+        "Income" = "inc")
+```
+
+
+```{r, descriptive statistics table}
+#| message: false
+#| results: asis
+#| warning: false
+#| echo: false
+#| label: tbl-descript
+#| tbl-cap: "Descriptive Statistics" 
+#| tbl-pos: H
+
+datasummary(All(scFloodDescriptData) ~ Mean + SD + Min + Max,
+            data = scFloodDescriptData)
+```
+
+
+# Results
+```{r ols models}
+#| message: false
+#| include: false
+
+# packages
+library(modelsummary)
+library(tinytable)
+library(ggplot2)
+
+# models
+summary(supportPreModel <- lm(buyoutSupportPre ~ concernFlood+floodEx+floodF+
+                                commRel+infraScale+scBridge+scBond+coastalCount+ownHome+
+                                currentAdd+ideology+age+male+white+edu+inc, 
+                              data = scFloodData2))
+
+hist(scFloodData2$buyoutSupportOwn)
+summary(supportPostModelOwn <- lm(buyoutSupportOwn ~ floodDays+concernFlood+floodEx+floodF+
+                                commRel+infraScale+scBridge+scBond+coastalCount+
+                                currentAdd+ideology+age+male+white+edu+inc, data = scFloodData2))
+
+#renters <- subset(scFloodData2, ownHome == 0)
+#rentT <- t.test(renters$buyoutSupportPre, renters$buyoutSupportRent) ##
+#rentT$statistic
+#summary(supportPostModelRent <- lm(buyoutSupportRent ~ floodDays, data = scFloodData2))
+
+
+gm <- tibble::tribble(
+  ~raw,        ~clean,          ~fmt,
+  "nobs",      "N",             0,
+  "r.squared", "R2", 2)
+
+cm <- c("concernFlood" = "Flooding Concern",
+        "floodEx" = "Flood Experience",
+        "floodF" = "Flooding Increase", 
+        "commRel" = "Perceived Community Resilience",
+        "infraScale" = "Infrastructure Scale", 
+        "scBridge" = "Bridging Social Capital",
+        "scBond" = "Bonding Social Capital",
+        "coastalCount" = "Coastal County", 
+        "ownHome" = "Own Home",
+        "currentAdd" = "Time at Current Addres", 
+        "ideology" = "Ideology (more conservative)",
+        "age" = "Age", 
+        "male" = "Gender (male=1)",
+        "white" = "Race (white=1)",
+        "edu" = "Education",
+        "inc" = "Income"
+)
+
+# modelsTotal <- list("Flood"=supportPreModelFlood, "Community"=supportPreModelComm, "Demographics"=supportPreModelDemo,
+#                    "Full"=supportPreModel)
+
+
+theme_set(theme_bw())
+floodPrePlot <- sjPlot::plot_model(supportPreModel, terms = c("concernFlood","floodF","floodEx"), p.threshold = c(0.10, 0.05, 0.001),  
+                         show.values = TRUE, value.offset = .4, colors = "bw",  title = "Flooding",
+                         axis.labels = c("Flooding Increase","Flood Experience","Flooding Concern")) # + xlab("") # + ylim(0,1)
+
+commPrePlot <- sjPlot::plot_model(supportPreModel, terms = c("infraScale","commRel","coastalCount","scBridge"), 
+                                  p.threshold = c(0.10, 0.05, 0.001),  
+                         show.values = TRUE, value.offset = .4, colors = "bw", title = "Community Factors",
+                         axis.labels = c("Coastal County", "Bridging\nSocial Capital",
+                                         "Infrastructure\nSatisfaction","Community\nResilience")) # + ylim(0,1) + xlab("")
+
+indivPrePlot <- sjPlot::plot_model(supportPreModel, terms = c("scBond","ownHome","currentAdd","ideology"), 
+                                  p.threshold = c(0.10, 0.05, 0.001),  
+                         show.values = TRUE, value.offset = .4, colors = "bw", title = "Individual Factors",
+                         axis.labels = c("Political Ideology\n(more conservative)", "Time at Current\nAddress",
+                                         "Own Home","Bonding\nSocial Capital")) # + ylim(-1,1) + xlab("")
+
+demPrePlot <- sjPlot::plot_model(supportPreModel, terms = c("age","male","white","edu", "inc"), 
+                                  p.threshold = c(0.10, 0.05, 0.001),  
+                         show.values = TRUE, value.offset = .4, colors = "bw", title = "Demographics",
+                         axis.labels = c("Income","Education", "Race (white=1)",
+                                         "Gender (male=1)","Age")) # + ylim(-1,1) + xlab("")
+
+grob <- gridExtra::arrangeGrob(floodPrePlot, commPrePlot, indivPrePlot, demPrePlot, ncol = 2)
+ggsave("manuscript/ols-model.png", grob, width = 8, height = 6, dpi = 300)
+
+(table(scFloodData2$buyoutSupportOwn)[4]/nrow(scFloodData2[scFloodData2$ownHome == "1", ]))*100
+
+
+
+```
+
+## Buyout Support 
+
+We first used OLS analysis to test our hypotheses for support of a property buyout program. The results are shown in the coefficient plot in @fig-ols, and we grouped them to match the grouping of the hypotheses.    
+
+![OLS Analysis of Support for Property Buyout Program](ols-model.png){#fig-ols} 
+
+Looking first to the flooding variables, we see that, as expected, as the concern about flooding increases, so does support for a property buyout program. Also, as expected, respondents who have experienced a flood are more likely than those who haven't to support property buyouts. However, there was no relationship between buyout support and a perceived increase in flooding.  
+
+We also examined several community factors, including the respondents' perceived resilience of the community, satisfaction with the physical infrastructure in the community, bridging social capital, and whether respondents live in a coastal community. As expected, those who live in a coastal community were more likely to support a buyout program. However, contrary to expectations, we found that increases in perceived resilience, infrastructure satisfaction, and bridging social capital were all associated with _increased_ support for property buyouts. 
+
+For the individual factors, we find that, as expected, an increase in bonding social capital is associated with a decrease in support for a buyout program (at _p_<0.10). Additionally, we found that, as expected, increasing conservatism is associated with decreasing support for buyouts. Respondents who had lived at their current address for longer were less supportive of buyouts (at _p_<0.10); however, there was no difference in support between homeowners and others. Finally, for demographics, male respondents were more likely to support a buyout program (at _p_<0.10) than others, but no other demographic variables were significant.    
+
+## Homeowners' Willingness to Accept a Buyout
+
+Next, we present the results regarding homeowners' willingness to accept a buyout. Overall,  `r nrow(scFloodData2[scFloodData2$ownHome == "1", ])` respondents indicated that they own their homes. As noted, respondents were given a random, hypothetical number of disruptive flood days per year in their community, and homeowners were then asked how willing they would be to accept a buyout given that number of flood days. @fig-hist shows a histogram of the number of hypothetical flood days, as well as homeowners' responses on their willingness to accept a buyout
+
+```{r plot network for pre and post sample}
+#| message: false
+#| warning: false
+#| echo: false
+#| label: fig-hist
+#| layout-ncol: 2
+#| fig-cap: Histograms of Number of Flood Days and Likelihood of Accepting Buyout
+#| fig-subcap: 
+#|  - "Number of Flood Days"
+#|  - "Likey to Accept Buyout"
+
+
+library(ggplot2)
+
+#ggplot(scFloodData2, aes(x=floodDays, y=buyoutSupportOwn)) + 
+#  geom_smooth(color = "black") +
+#  labs(title="", 
+#       caption = "",
+#       x="Number of Flood Days", y = "Likey to Accept Buyout (1-5 scale)") +
+#  theme_minimal() +
+#  theme(plot.title = element_text(face = "bold"),
+#        plot.caption = element_text(face = "italic")) +
+#  scale_fill_grey()
+
+
+ggplot(scFloodData2, aes(x = floodDays)) +
+  geom_histogram(bins = 15, fill = "black", color = "white") +
+  labs(title = "", x = "", y = "Count") +
+  theme_minimal()
+
+ggplot(scFloodData2, aes(x = buyoutSupportOwn)) +
+  geom_histogram(bins = 15, fill = "black", color = "white") +
+  scale_x_continuous(
+    breaks = c(1, 2, 3, 4, 5),
+    labels = c("Very\n Unlikely", "Somewhat \n Unlikely", "Neutral", "Somewhat \n Likely", "Very\n Likely")
+  ) +
+  labs(title = "", x = "", y = "") +
+  theme_minimal()
+
+```
+
+As shown in @fig-hist, most respondents saw a large number of hypothetical flood days, with a mean number of `r round(mean(scFloodData2$floodDays),2)` and a median of `r median(scFloodData2$floodDays)`. Additionally, homeowners were, on average, willing to accept a buyout, with `r round((table(scFloodData2$buyoutSupportOwn)[4]/nrow(scFloodData2[scFloodData2$ownHome == "1", ]))*100, 0)`% indicating they are somewhat likely, and `r round((table(scFloodData2$buyoutSupportOwn)[5]/nrow(scFloodData2[scFloodData2$ownHome == "1", ]))*100, 0)`% saying they are very likely.  
+
+Finally, we examine the relationship between hypothetical flood days and homeowners' willingness to accept a buyout. As noted, we expect the willingness to accept a buyout to increase as the number of flood days increases. In @fig-postSupport, we show a scatterplot and regression line illustrating the relationship between the flood days and accepting a buyout.  
+
+
+
+```{r plot network for pre and post sample}
+#| message: false
+#| warning: false
+#| echo: false
+#| label: fig-postSupport
+#| fig-cap: Hypothetical Number of Flood Days and Likelihood of Accepting Buyout
+
+ggplot(scFloodData2, aes(x = floodDays, y = buyoutSupportOwn)) +
+  geom_jitter(
+    width = 0,      # horizontal jitter amount
+    height = 0.2,       # no vertical jitter
+    alpha = 0.7,      # point transparency
+    size = 3         # point size
+  ) +
+  geom_smooth(
+    method = "lm",   # ols 
+    se = TRUE,          # show confidence interval ribbon
+    color = "black",
+    linewidth = 1.2
+  ) +
+labs(title="", 
+       caption = "",
+       x="Number of Flood Days", y = "Likey to Accept Buyout (1-5 scale)") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"),
+        plot.caption = element_text(face = "italic")) +
+  scale_fill_grey()
+
+#ggplot(scFloodData2, aes(x=floodDays, y=buyoutSupportRent)) + 
+#  geom_smooth(color = "black") +
+#  labs(title="", 
+#       caption = "",
+#       x="Number of Flood Days", y = "Likey to Support Buyout (1-5 scale)") +
+#  theme_minimal() +
+#  theme(plot.title = element_text(face = "bold"),
+#        plot.caption = element_text(face = "italic")) +
+#  scale_fill_grey()
+
+```
+
+
+As can be seen in @fig-postSupport, contrary to expectations, the relationship between flood days and buyout acceptance is not significant. There is little to no change in willingness to accept a buyout as the number of flood days increased.   
+
+
+# Discussion 
+
+Property buyout programs are increasingly seen as an important tool to mitigate the impacts of climate change-induced disasters and to protect households, businesses, and infrastructure. Yet there is still more to learn about how the public views property buyout programs and their willingness to participate in a buyout. In this paper, we drew on a quota-based sample of residents of South Carolina to examine views of buyout programs. We posited and tested several hypotheses regarding support for buyout programs and the willingness of homeowners to accept a buyout. Specifically, we examined the role of flood perceptions, community factors, and individual factors in shaping support for buyout programs. 
+Perceptions and experiences of flooding risk are the leading factors shaping views of and participation in buyout programs. We found, as expected, that as concern for flooding increased, so did support for property buyout programs. Additionally, those who have experienced a flood were more likely than those who haven't to support buyouts. These findings are consistent with previous research, which indicates the strong push effect of flooding risk. We also developed an experiment to test the influence of the number of flood days on homeowners' stated willingness to accept a buyout. Contrary to expectations, we found no significant relationship between hypothetical flood days and buyout acceptance. This may be because the range of hypothetical flood days included exceedingly large numbers, and had a median value of 100 days. However, what these results seem to illustrate is a lower than expected threshold for flooding among homeowners. Future research should use a much lower number of flood days to examine where the threshold of flood events might be for homeowners to consider accepting a buyout.  
+
+Perhaps the most interesting findings are those related to the community factors and support for buyout programs. Contrary to expectations, we found that increased bridging social capital, increased perceptions of community resilience, and increased satisfaction with physical infrastructure were all associated with _increased_ support for a property buyout program. As noted, we expected these to act as pull factors keeping respondents tied to their community and, therefore, less supportive of buyouts. One reason for these results may be that since respondents view community organizations and government services favorably, they assume that a property buyout program will be managed effectively. Additionally, respondents may assume that buyout programs allow participants to stay in their community. Relatedly, previous research found a disconnect regarding property buyout programs and the need for participants to relocate [@hotardHomeBuyoutRelocation2023]. Future research should try to replicate these results, perhaps at the national level. In addition, future work should focus more directly on what the public assumes about how property buyout programs work. 
+
+Finally, for individual factors, our expectations were largely met. We posited that bonding social capital, home ownership, time at current residence, and political conservatism would all be associated with less support for buyout programs. As noted, we found that those who had closer ties to friends, neighbors, coworkers, and family in their local community were less supportive of buyouts. Interestingly, there was a disconnect between bonding and bridging social capital, where bonding social capital acted as a pull factor, while bridging social capital acted as a push factor. Place attachment, measured as time at current residence, was associated with less support. Finally, political conservatism was associated with less support, as expected. This is likely because conservatives may not think that the government could effectively manage a buyout program or that such programs are not something in which governments should engage.        
+
+
+# Conclusion 
+
+The impacts of climate change will become increasingly evident over the coming decades. As a result, it is likely that we will see an increase in migration away from areas that face increasing risk from climate-induced hazards. Therefore, governments and communities are beginning to consider ways to manage potential climate migration and the risks associated with climate change. One tool of managed retreat and flooding risk management is property buyouts, where governments purchase private homes and businesses, and owners relocate. Property buyout programs are growing across the US, yet we have a relatively nascent understanding of how the public views these programs. 
+
+In this paper, we examined public opinion in the state of South Carolina, which has seen several major flooding events over the last decade, and has developed a voluntary property buyout program. Our findings suggest that the public is, on average, supportive of buyout programs, particularly when they are concerned about flooding, have experienced a flood, and live in a coastal county. Additionally, homeowners seem to have a low threshold for flood risk, as measured by stated willingness to accept a buyout given a hypothetical number of flood days per year. Less support for buyout programs is found among those with stronger ties to others in their community, more time at their current residence, and political conservatism. Interestingly, in our findings, satisfaction with their community is associated with increased support for buyout programs. These findings may reflect a sense of trust in the community's ability to manage a buyout program, or it may reflect a disconnect where respondents don't realize that a buyout would likely entail needing to relocate outside of their community. If the latter, an implication is that communities and program designers may need to focus on communication to potential participants as well as try to find suitable housing for participants within their existing communities.       
+
+\clearpage
+
+# Appendix 
+
+## Survey Questions 
+
+### Flood Perceptions 
+
+On a scale of 0 to 10, with 0 being not at all concerned and 10 being extremely concerned, how concerned are you about flooding in your local area
+
+In your personal experience, over the past few years has flooding where you live been more frequent, less frequent, or stayed about the same as in previous years?
+
+* Less frequent
+* Stayed about the same
+* More frequent
+
+Have you ever lived in a home/apartment that was flooded by water from outside the home? Please select all that apply.
+
+* No
+* Within the last year (2022)
+* Last 2-5 years (2017-2021)
+* Last 6-10 years (2012-2016)
+* Last 10-20 years (2002-2012)
+* More than 20 years ago (2001 or earlier)
+
+_Recoded to No = 0, all else = 1_ 
+
+
+### Social Capital: Bonding 
+
+This next set of questions asks you about your social relationships within your local community.  
+
+How do you rate the number of your friends within your local community? Would you say that you have a few, less than average, average, more than average, or a lot of friends?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+How do you rate the number of your old classmates in your local community with which you are still in contact? Would you say that you keep in touch with a few, less than average, average, more than average, or a lot?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+Among your coworkers, how many you can trust?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+Among your relatives, how many you can trust?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+Among all your relatives, neighbors, friends, co-workers, and classmates within your local community, how many have broad connections with others?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+Among all your family members, relatives, neighbors, friends, co-workers, and old classmates within your local community, how many hold a professional job?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of your coworkers will definitely help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of your friends within your local community will definitely help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+### Social Capital: Bridging 
+
+This next set of questions asks you about groups and organizations within your community.
+
+How do you rate the number of cultural, religious, recreational and leisure groups/organizations in your local community? Would you say that there are a few, less than average, average, more than average, or a lot of such groups/organizations?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+How do you rate the number of governmental, political, economic and social groups/organizations in your local community? Would you say that there are a few, less than average, average, more than average, or a lot of such groups/organizations?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+How many of these groups and organizations in your community possess broad social connections?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of these groups and organizations in your community possess great social influence?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the cultural, religious, recreational and leisure groups/organizations represent your interests?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the governmental, political, economic and social groups/organizations represent your interests?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the cultural, religious, recreational and leisure groups/organizations will help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the governmental, political, economic and social groups/organizations will help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+### Community Resilience 
+
+Using a scale from one to seven, where one means you strongly disagree and seven means you strongly agree, please respond to the following statements about your community, including your neighborhood or immediate surrounding area. _Randomized_ 
+
+* This community tries to prevent disasters
+* This community actively prepares for future disasters 
+* This community can provide emergency services during a disaster 
+* This community has services and programs to help people after a disaster 
+
+## Infrastructure Satisfaction
+
+On average, how satisfied are you with the overall job of local government in providing services in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+On average, how satisfied are you with the quality of drinking water services in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+On average, how satisfied are you with the conditions of the roads and streets in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+On average, how satisfied are you with the reliability of [sewer/septic] services in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+<!-- 
+
+```{r ols table}
+#| message: false
+#| echo: false
+#| label: tbl-olsModel
+#| tbl-cap: "OLS Analysis of Support for Property Buyout Program"
+
+modelsummary(supportPreModel, stars = TRUE, coef_map = cm, gof_map = gm, output = "tinytable") %>%
+  style_tt(fontsize = 0.9, height = 0.5) 
+
+```
+
+--> 
+
+\clearpage 
+
+# References 
+
+
+

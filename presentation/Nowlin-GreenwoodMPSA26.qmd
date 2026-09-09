@@ -1,0 +1,376 @@
+---
+title: "Flood Perceptions, Social Capital, and Public Support for Property Buyout Programs"
+title-slide-attributes:
+  data-background-color: "#0064B1"
+author:
+  - name: Matthew C. Nowlin
+    affiliation: 
+      - Department of Political Science
+      - University of Texas at Arlington
+  - name: Lauren Greenwood
+    affiliation:
+      - M.S. Environmental and Sustainability Studies
+      - College of Charleston
+bibliography: /Users/matthewnowlin/Library/CloudStorage/Dropbox/refs.bib
+csl: /Users/matthewnowlin/Library/CloudStorage/Dropbox/Projects/Manuscript-Files/csl/american-political-science-association.csl
+fig-cap-location: top
+fontfamily: ebgaramond
+link-bibliography: false
+format:
+  revealjs:
+    theme: [pp.scss]
+    logo: "UTAPoliticalScience.png"
+    incremental: true
+    include-in-header:
+      text: |
+        <style>
+          #title-slide .title {
+            font-size: 2em;
+            color: white;
+          }
+        </style>
+---
+
+
+
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r}
+#| echo: false
+#| include: false
+#| warning: false
+
+## packages
+library(ggplot2)
+
+## load data and recodes 
+source("scripts/recodes.R")
+
+sjPlot::set_theme(base = theme_bw())
+```
+
+
+## Motivation
+
+**_What influences public support for a property buyout program_?** 
+
+* Climate change is likely to cause migration and retreat from vulnerable areas 
+ 
+* Expanding property buyout programs are one approach being considered by governments to manage migration 
+  * Flooding 
+
+* Few studies examine the views of the general public regarding buyout programs 
+  * Several studies about the views of program participants 
+
+## Buyout Programs 
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* Federal Emergency Management Agency (FEMA)
+  * Hazard Mitigation Grant Program (HMGP) 
+
+* Department of Housing and Urban Development (HUD)
+
+* South Carolina Office of Resilience 
+  * Funding from HUD Community Development Block Grant-Mitigation (CDBG-MIT)
+  * Voluntary 
+  * Residential properties in a floodplain 
+
+:::
+
+::: {.column width="30%"}
+
+![](scor.png)
+
+:::
+
+
+::::
+
+## Public Support for Buyout Program   
+
+**_Push_ and _Pull_ Factors**  
+
+* Push 
+  * Flood risk [@bendzCitizenConcernsClimate2025; @hotardHomeBuyoutRelocation2023]
+
+* Pull 
+  * Place attachment [@seebauerShouldStayShould2020; @mukherjiBuyoutProgrammeExperiences2024]
+  * Social capital: bonding and bridging [@binderUpheavalUnpackingDynamic2023]
+  * Community attributes: resilience, infrastructure, location 
+
+* Individual 
+  * Political beliefs 
+
+::: {.notes}
+other hazard related variables 
+:::
+
+## Expectations 
+
+### _Flooding_
+
+H1a: _As concern about flooding increases, so does support for a property buyout program_
+
+H1b: _Those who perceive flooding in their area to have increased will be more likely than others to support a property buyout program_
+
+H1c: _Those who have experienced a flood will be more likely than others to support a property buyout program_
+
+## Expectations 
+
+### _Community Factors_
+
+H2a: _As perceptions of community resilience increase, support for a property buyout program decreases_
+
+H2b: _As satisfaction with infrastructure increases, support for a property buyout program decreases_
+
+H2c: _As bridging social capital increases, support for a property buyout program decreases_
+
+H2d: _Those who live in a coastal county will be more supportive of a property buyout program than those in other areas_
+
+## Expectations 
+
+### _Individual Factors_ 
+
+H3a: _As bonding social capital increases, support for a property buyout program decreases_
+
+H3b: _Homeowners are more likely than others to support a property buyout program_
+
+H3c: _As time at current residence increases, support for a property buyout program decreases_
+
+H3d: _As political conservatism increases, support for a property buyout program decreases_
+
+## Expectations 
+
+### _Homeowners Willingness to Accept_
+
+H4: _As the number of flood days increases, the likelihood of a stated willingness to accept a buyout increases_
+
+
+# Data and Analysis {.section-background}
+
+## Survey 
+
+* Residents of South Carolina
+  * Recruited by _Cloud Research_ 
+  * November - December 2023 
+  * _n_ = `r nrow(scFloodData2)`
+
+* Overall support
+
+* Homeowners willingness to accept a buyout 
+  * Flood days treatment 
+    * Random draw from 7-200 days of disruptive flooding
+
+## Measures 
+
+### Property Buyout: Support
+
+_Property buyouts are a policy for reducing risk to people and communities from severe storms, flooding, wildfires, and other extreme events. Buyouts also reduce costs to homeowners, insurance companies, and the government for rebuilding after events. In a buyout program, the government purchases private properties including homes and businesses that are damaged or at risk. Participating property owners must then relocate._
+
+## Measures 
+
+### Property Buyout: Support
+
+_**On a scale from 1 to 7, with 1 being strongly oppose and 7 being strongly support**, please indicate your support for a property buyout program in South Carolina. In this program the federal government would purchase homes and businesses in South Carolina that have been damaged or at risk from natural disasters and the owners would need to move._  
+
+* **Average support = `r round(mean(scFloodData$buyoutSupportPre, na.rm=TRUE),2)` on the 1 to 7 scale** 
+
+## Measures 
+
+### Property Buyout: Homeowners Willingness to Accept 
+
+_Imagine that over the next few years, disruptive flooding events begin to occur in your community [7-200] days a year_ 
+
+_With the above number of disruptive flooding days per year, how likely would you be to accept a property buyout of your home?_
+
+* **Average Willingness = `r round(mean(scFloodData2$buyoutSupportOwn, na.rm=TRUE),2)` on the 1 to 5 scale**
+* _58% somewhat or very likely to accept a buyout_
+
+
+## Measures 
+
+### Flood Perceptions 
+
+::: {.incremental}
+* Concern over flooding in local area, _0 to 10 scale_
+  * Average concern = `r round(mean(scFloodData$concernFlood, na.rm=TRUE),2)`
+
+* Flooding has decreased (1), stayed the same (2), increased (3)
+  * Average = `r round(mean(scFloodData$floodF, na.rm=TRUE),2)`
+
+* Flood experience, _0 = never experienced a flood, 1 = experienced a flood_ 
+  * `r round(mean(scFloodData$floodEx, na.rm=TRUE),2)*100`% of respondents
+
+:::
+
+## Measures 
+
+### Community Factors 
+
+::: {.incremental}
+
+* Bridging social capital, _1 to 5 scale_ 
+  * Average = `r round(mean(scFloodData$scBridge, na.rm=TRUE),2)`; Cronbach's $\alpha$ = `r round(scBridgeA$alpha,2)` 
+
+* Satisfaction with community infrastructure (local government services, drinking water, roads, sewer), _1 to 5 scale_ 
+  * Average satisfaction = `r round(mean(scFloodData$infraScale, na.rm=TRUE),2)`; Cronbach's $\alpha$ = `r round(infraA$alpha,2)` 
+  
+* Perceived community resilience and disaster response, _1 to 7 scale_ 
+  * Average = `r round(mean(scFloodData$commRel, na.rm=TRUE),2)`; Cronbach's $\alpha$ = `r round(commRelA$alpha,2)` 
+
+* Live in a coastal county, _0 = no, 1 = yes_ 
+  * `r round(mean(scFloodData$coastalCount, na.rm=TRUE),2)*100`% of respondents
+
+:::
+
+## Measures 
+
+### Individual Factors 
+
+::: {.incremental}
+* Bonding social capital, _1 to 5 scale_ 
+  * Average = `r round(mean(scFloodData$scBond, na.rm=TRUE),2)`; Cronbach's $\alpha$ = `r round(scBondA$alpha,2)` 
+
+* Political ideology, _1 (very liberal) to 7 (very conservative) scale_ 
+  * Average = `r round(mean(scFloodData$ideology, na.rm=TRUE),2)`
+
+* Homeowner, _0 = no, 1 = yes_ 
+  * `r round(mean(scFloodData$ownHome, na.rm=TRUE),2)*100`% of respondents
+
+* Time at current residence, _1 to 4 scale_ 
+  * Average = `r round(mean(scFloodData$currentAdd, na.rm=TRUE),2)`
+
+:::
+
+::: {.notes}
+
+
+* Time at current residence, _1 to 4 scale_ 
+  * less than 1 year = 1 
+  * 1-5 years = 2 
+  * 6-10 years = 3 
+  * 11+ years = 4 
+  * _Average = `r round(mean(scFloodData$currentAdd, na.rm=TRUE),2)`_ 
+
+
+:::
+
+
+
+# Results {.section-background}
+
+
+## Results
+
+```{r}
+#| echo: false
+#| include: false
+#| warning: false
+
+summary(supportPreModel <- lm(buyoutSupportPre ~ concernFlood+floodEx+floodF+
+                                commRel+infraScale+scBridge+scBond+coastalCount+ownHome+
+                                currentAdd+ideology+age+male+white+edu+inc, 
+                              data = scFloodData2))
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| results: asis
+
+floodPrePlot <- sjPlot::plot_model(supportPreModel, terms = c("concernFlood","floodF","floodEx"), p.threshold = c(0.10, 0.05, 0.001),  
+                         show.values = TRUE, value.offset = .4, colors = "bw",  title = "Flooding",
+                         axis.labels = c("Flooding Increase","Flood Experience","Flooding Concern")) # + xlab("") # + ylim(0,1)
+
+floodPrePlot + sjPlot::font_size(title = 25, labels.y = 18)
+
+
+```
+
+## Results 
+
+```{r}
+#| echo: false
+#| warning: false
+#| results: asis
+
+commPrePlot <- sjPlot::plot_model(supportPreModel, terms = c("infraScale","commRel","coastalCount","scBridge"), 
+                                  p.threshold = c(0.10, 0.05, 0.001),  
+                         show.values = TRUE, value.offset = .4, colors = "bw", title = "Community Factors",
+                         axis.labels = c("Coastal County", "Bridging\nSocial Capital",
+                                         "Infrastructure\nSatisfaction","Community\nResilience")) # + ylim(0,1) + xlab("")
+commPrePlot + sjPlot::font_size(title = 25, labels.y = 18)
+```
+
+## Results
+
+```{r}
+#| echo: false
+#| warning: false
+#| results: asis
+
+indivPrePlot <- sjPlot::plot_model(supportPreModel, terms = c("scBond","ownHome","currentAdd","ideology"), 
+                                  p.threshold = c(0.10, 0.05, 0.001),  
+                         show.values = TRUE, value.offset = .4, colors = "bw", title = "Individual Factors",
+                         axis.labels = c("Political Ideology\n(more conservative)", "Time at Current\nAddress",
+                                         "Own Home","Bonding\nSocial Capital")) # + ylim(-1,1) + xlab("")
+indivPrePlot + sjPlot::font_size(title = 25, labels.y = 18)
+```
+
+## Results: Flood Days and Accept Buyout 
+
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+ggplot(scFloodData2, aes(x = floodDays, y = buyoutSupportOwn)) +
+  geom_jitter(
+    width = 0,      # horizontal jitter amount
+    height = 0.2,       # no vertical jitter
+    alpha = 0.7,      # point transparency
+    size = 3         # point size
+  ) +
+  geom_smooth(
+    method = "lm",   # ols 
+    se = TRUE,          # show confidence interval ribbon
+    color = "black",
+    linewidth = 1.2
+  ) +
+labs(title="", 
+       caption = "",
+       x="Number of Flood Days", y = "Likey to Accept Buyout (1-5 scale)") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"),
+        plot.caption = element_text(face = "italic")) +
+  scale_fill_grey()
+
+```
+
+## Discussion 
+
+::: {.incremental}
+* Flood risk (concern and experience)
+
+* Individual factors 
+  * Increased bonding social capital, longer at current address, and more politically conservative associated with _decreased_ support 
+
+* Community factors 
+  * **_Increased community satisfaction (infrastructure, resilience, bridging social capital) associated with increased support_**
+  * Coastal county residents more supportive than others 
+
+* Homeowners 
+  * Number of flood days not associated with stated willingness to accept a buyout 
+
+:::
+
+# Thank You! {.section-background} 
+
+## References 
