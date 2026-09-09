@@ -23,6 +23,7 @@ and race distributions). The analysis has two parts:
 ```
 flood-risk.qmd                       Manuscript source (renders to HTML, PDF, DOCX)
 _quarto.yaml                         Quarto project config
+renv.lock, renv/, .Rprofile          Pinned package library (renv)
 _output/                             Rendered HTML/PDF/DOCX (tracked in git)
 custom-reference-doc.docx            Word reference template for the DOCX output
 CLAUDE.md                            Project instructions / setup + close-out workflows
@@ -48,15 +49,17 @@ archive/, presentation/              Prior drafts, thesis, conference decks
 
 ## Reproducing the analysis
 
-Requires R with: `dplyr`, `ggplot2`, `modelsummary`, `tinytable`, `sjPlot`,
-`gridExtra`, `psy`, `datawizard`, `car`, plus Quarto.
+Package versions are pinned with [`renv`](https://rstudio.github.io/renv/)
+(lockfile records R 4.6.0). Open the project in R and run
+`renv::restore()` to install the recorded library, then:
 
 - **Manuscript:** `quarto render` → outputs to `_output/` (HTML, PDF, and
   DOCX; the DOCX uses `custom-reference-doc.docx`). The pre-render step
   regenerates `references.bib` and the local `.csl` from the master
   bibliography.
 - **Models only:** `Rscript scripts/analysis.R` sources `recodes.R` and
-  fits `supportPreModel` and `supportPostModelOwn`.
+  fits `supportPreModel` (n = 407) and `supportPostModelOwn` (n = 288,
+  homeowners).
 
 ## Data
 

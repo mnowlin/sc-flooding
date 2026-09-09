@@ -22,6 +22,7 @@ year (7–200).
 - `scripts/recodes.R` — raw data loading, all recodes/scales (incl. Cronbach's alpha), ZIP-to-county and FEMA NRI merges
 - `scripts/analysis.R` — sources `recodes.R`, fits the two OLS models reported in the manuscript
 - `scripts/export-cited-refs.R` — pre-render step that trims the master `.bib` to cited keys
+- `renv.lock` — pinned package library (R 4.6.0); restore with `renv::restore()`
 - `data/SC Statewide Survey NUMBER.csv` — numeric-coded survey responses (not in git)
 - `README.md` — project structure and reproduction instructions
 - `peer-review-flood-risk.md` — internal pre-submission peer review
@@ -29,6 +30,24 @@ year (7–200).
 ---
 
 ## Session History
+
+### Session 2 — 2026-09-09 (renv, close out)
+
+- Ran `renv::init()` — created a project library and `renv.lock` pinned to
+  R 4.6.0, capturing the manuscript/analysis dependency tree (dplyr,
+  ggplot2, modelsummary, tinytable, sjPlot, psy, datawizard, car, knitr,
+  rmarkdown, ...).
+- `renv::status()` reported the project out-of-sync over `gdata` (a
+  transitive dependency via `gtools`/`stargazer`); installed
+  `gdata` + `gtools` and re-snapshotted. Status now clean.
+- Verified `Rscript -e 'source("scripts/analysis.R")'` runs under the
+  project library; both models fit. Estimation Ns: `supportPreModel`
+  n = 407, `supportPostModelOwn` n = 288 (homeowners) — concrete
+  confirmation of the case loss flagged in the internal review (inner
+  joins + listwise deletion drop ~150 of ~560 completed surveys from the
+  main model).
+- Updated `README.md` to lead with `renv::restore()` and note the
+  estimation Ns. Committed and pushed.
 
 ### Session 1 — 2026-09-09 (Internal peer review + project setup)
 
