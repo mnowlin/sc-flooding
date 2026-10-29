@@ -1,6 +1,6 @@
 # Session Log — sc-flooding Project
 
-Paper title: **"Flood Perceptions, Social Capital, and Public Support for Property Buyout Programs"**
+Paper title: **"Who Supports Managed Retreat? Flood Experience, Local Government Performance, and Public Opinion on Property Buyouts"**
 
 This log records what has been done in each working session. Update it at the end of each session (newest entry first).
 
@@ -30,6 +30,82 @@ year (7–200).
 ---
 
 ## Session History
+
+### Session 4 — 2026-10-29 (Review revisions: moderate and minor issues)
+
+- `_output/` (rendered html/pdf/docx) now tracked in git.
+- `recodes.R`: flood recency from multi-select Q14 (`floodRecent` = most
+  recent flood within ~5 years, `floodOlder`), `floodMore` dummy, survey
+  `duration`; documented `buyoutSupportPre` as pre-experiment and added
+  `buyoutSupport` (name used in `analysis.R` and the manuscript).
+- `analysis.R`: alternative-measure models (`altModels`: recency, more-frequent
+  dummy, Q12/Q13 past-year exposure, excluding 13 speeders < 1/3 median time),
+  2-factor EFA of the 16 social capital items (`scEFA`), substantive effects
+  table (`effectTab`, 0-to-1 or +2 SD with clustered CIs), and the accept
+  model with baseline support as a pre-treatment covariate (`acceptBaseModel`).
+- Findings: recent flood +1.15 (p < .001), older flood ~0; Q12/Q13 and the
+  more-frequent dummy ns; results hold without speeders; VIFs < 2.4; EFA
+  separates bonding/bridging (r = .56) but bonding items 1-2 load weakly.
+  Study 2 with baseline covariate: +0.24 per 100 days, p = .02 (vs. +0.19,
+  p < .10 without).
+- Manuscript: trimmed climate-migrant framing (dropped World Bank 216M);
+  added trust / policy feedback / NIMBY paragraph; IRB footnote (protocol
+  number placeholder) and no-preregistration statement, plus a limitation
+  noting the competing hypotheses were developed partly after earlier
+  analyses; completion-time check; split descriptive tables (binary as %);
+  effects table in Results; alternative-measures and EFA tables in appendix;
+  dropped the MPSA line; fixed the Greenwood footnote.
+- New title: "Who Supports Managed Retreat? Flood Experience, Local Government
+  Performance, and Public Opinion on Property Buyouts"; "local government
+  performance" used consistently for H3.
+- Appendix moved to `supplemental-materials.qmd` (added to `_quarto.yaml`
+  render list). Shared table labels moved to `scripts/labels.R`. Supplement
+  captions are hardcoded (Table S1-S7, Figure S1) because Quarto cross-refs
+  can't produce S-numbering or link across documents; main-text references to
+  "Table S#" are also hardcoded, so renumber both if tables are reordered.
+  PDF tables pinned with `options(tinytable_latex_placement = "H")` plus
+  `\needspace`/`\clearpage` before captions.
+- Combined the descriptive statistics into one table (continuous/ordinal
+  panel with mean/SD/min/max; binary panel with percent coded 1).
+- Close out: README updated (analysis description, supplement, `labels.R`,
+  model names, sample funnel); full project re-rendered; committed and pushed.
+
+### Session 3 — 2026-10-29 (Review revisions: priority items 1-8, competing hypotheses)
+
+- Consensus literature search on public support for buyouts; drafted
+  `literature/buyout-lit-review.md` (gitignored) with Zotero citekeys.
+- `recodes.R`: removed `round()` from `scBond`, `scBridge`, `commRel`,
+  `infraScale`; fixed `infraScale` divisor (4 items, was /5); dropped the
+  Qualtrics spam record (Status 8); ZIPs spanning counties now go to the
+  county with the largest residential share (was first row); added ZIP 29342
+  (Gaffney PO boxes, not in the HUD crosswalk) to Cherokee County; recoded
+  `currentComm` (Q82, time in area) to the `currentAdd` 1-4 scale; added
+  administrative coastal county (`coastalCount`, 8-county coastal zone;
+  self-report kept as `coastalSelf`), NRI flood risk (`rfldRisk`,
+  `cfldRisk`), and raked post-stratification weights (`wt`, ACS 2024
+  1-year SC adults on sex, age, race, education); sample-funnel counts.
+- `analysis.R`: nested Flooding/Community/Individual/Full models on a
+  common sample (n = 407), county-clustered SEs; robustness (weighted,
+  ordered logit, community measures entered singly, self-reported coastal);
+  study 2 (`acceptModel`, flood days per 100) moved to an appendix.
+- De-rounding changed results: bonding and bridging social capital are no
+  longer significant in the full model; resilience and infrastructure stay
+  positive. Time in area (new) is negative and significant.
+- Manuscript: competing community-factor hypotheses (H2 attachment vs. H3
+  government performance), coastal county moved to H1d, individual factors
+  now H4; drafted revised abstract, intro, lit review, data, results,
+  discussion, conclusion (Claude draft, style profile). Regression tables
+  added; figure now built in-chunk (no `ggsave`). Removed the `root.dir`
+  setup line; fixed duplicate chunk labels; DOCX reference doc now the local
+  `custom-reference-doc.docx` (old Dropbox path no longer exists); added
+  `html: default` so all three formats render. Pre-revision manuscript
+  saved to `archive/flood-risk-pre-revision.qmd`.
+- renv: library had been offloaded by OneDrive (missing DESCRIPTION files);
+  ran `renv::restore()`, removed stub `.dSYM` files that broke Quarto, added
+  `survey`, `sandwich`, `psych`; snapshotted.
+- Placeholder citations `@MISSING-*` (Mah 2024, Mallette 2021, Shao 2017,
+  Jones 2014, Bax 2025) need Zotero entries; Houser 2022 key
+  `PublicSupportLocal` lacks author/year metadata.
 
 ### Session 2 — 2026-09-09 (renv, close out)
 
@@ -110,14 +186,12 @@ year (7–200).
   `01-RESEARCH/Manuscript-Files/`; `scripts/export-cited-refs.R` writes a
   trimmed project-local `references.bib` and copies the CSL at pre-render.
 
-## Open Items (from the internal review, not yet addressed)
+## Open Items
 
-- `infraScale` divisor bug and `round(..., 0)` on all four scales — re-run
-  the analysis after fixing.
-- Add a full regression table (and the flood-days model) to the manuscript.
-- Reconcile federal vs. state framing of the support question.
-- Bring in FEMA NRI objective risk; use administrative (not self-reported)
-  coastal-county coding.
-- Report the sample-accounting funnel and per-model Ns.
-- Reframe the experiment around the ceiling effect; report the null with
-  full statistics.
+- Add the five `@MISSING-*` references to Zotero and swap in their keys; fix
+  author/year metadata for `PublicSupportLocal` (Houser et al. 2022).
+- Fill in the IRB protocol number; describe CloudResearch screening (TODO
+  comment in the Data section).
+- Decide whether to keep study 2 (now suggestive with the baseline covariate).
+- Review/rewrite the Claude-drafted manuscript text; the title still
+  foregrounds social capital, which is no longer significant.

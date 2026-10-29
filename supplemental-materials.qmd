@@ -1,0 +1,410 @@
+---
+title: "Supplemental Materials"
+subtitle: "Who Supports Managed Retreat? Flood Experience, Local Government Performance, and Public Opinion on Property Buyouts"
+author:
+  - "Matthew C. Nowlin"
+  - "Lauren Greenwood"
+fig-cap-location: top
+fontfamily: ebgaramond
+format:
+  html: default
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage{float}
+        \usepackage{needspace}
+        \addtokomafont{disposition}{\rmfamily}
+  docx:
+    reference-doc: custom-reference-doc.docx
+---
+
+```{r load data, recodes, and models}
+#| echo: false
+#| include: false
+#| warning: false
+
+source("scripts/analysis.R")
+source("scripts/labels.R")
+
+library(modelsummary)
+library(tinytable)
+library(ggplot2)
+
+## keep tables next to their captions in the PDF (no floating)
+options(tinytable_latex_placement = "H")
+```
+
+# Survey Questions 
+
+## Flood Perceptions 
+
+On a scale of 0 to 10, with 0 being not at all concerned and 10 being extremely concerned, how concerned are you about flooding in your local area
+
+In your personal experience, over the past few years has flooding where you live been more frequent, less frequent, or stayed about the same as in previous years?
+
+* Less frequent
+* Stayed about the same
+* More frequent
+
+Have you ever lived in a home/apartment that was flooded by water from outside the home? Please select all that apply.
+
+* No
+* Within the last year (2022)
+* Last 2-5 years (2017-2021)
+* Last 6-10 years (2012-2016)
+* Last 10-20 years (2002-2012)
+* More than 20 years ago (2001 or earlier)
+
+_Recoded to No = 0, all else = 1_ 
+
+
+## Social Capital: Bonding 
+
+This next set of questions asks you about your social relationships within your local community.  
+
+How do you rate the number of your friends within your local community? Would you say that you have a few, less than average, average, more than average, or a lot of friends?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+How do you rate the number of your old classmates in your local community with which you are still in contact? Would you say that you keep in touch with a few, less than average, average, more than average, or a lot?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+Among your coworkers, how many you can trust?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+Among your relatives, how many you can trust?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+Among all your relatives, neighbors, friends, co-workers, and classmates within your local community, how many have broad connections with others?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+Among all your family members, relatives, neighbors, friends, co-workers, and old classmates within your local community, how many hold a professional job?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of your coworkers will definitely help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of your friends within your local community will definitely help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+## Social Capital: Bridging 
+
+This next set of questions asks you about groups and organizations within your community.
+
+How do you rate the number of cultural, religious, recreational and leisure groups/organizations in your local community? Would you say that there are a few, less than average, average, more than average, or a lot of such groups/organizations?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+How do you rate the number of governmental, political, economic and social groups/organizations in your local community? Would you say that there are a few, less than average, average, more than average, or a lot of such groups/organizations?
+
+* A few  (1) 
+* Less than average  (2) 
+* Average  (3) 
+* More than average  (4) 
+* A lot  (5) 
+
+How many of these groups and organizations in your community possess broad social connections?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of these groups and organizations in your community possess great social influence?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the cultural, religious, recreational and leisure groups/organizations represent your interests?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the governmental, political, economic and social groups/organizations represent your interests?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the cultural, religious, recreational and leisure groups/organizations will help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+How many of the governmental, political, economic and social groups/organizations will help you upon your request?
+
+* None  (1) 
+* A few  (2) 
+* Some  (3) 
+* Most  (4) 
+* All  (5) 
+
+## Community Resilience 
+
+Using a scale from one to seven, where one means you strongly disagree and seven means you strongly agree, please respond to the following statements about your community, including your neighborhood or immediate surrounding area. _Randomized_ 
+
+* This community tries to prevent disasters
+* This community actively prepares for future disasters 
+* This community can provide emergency services during a disaster 
+* This community has services and programs to help people after a disaster 
+
+## Infrastructure Satisfaction
+
+On average, how satisfied are you with the overall job of local government in providing services in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+On average, how satisfied are you with the quality of drinking water services in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+On average, how satisfied are you with the conditions of the roads and streets in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+On average, how satisfied are you with the reliability of [sewer/septic] services in your community?
+
+* Very dissatisfied  (1) 
+* Somewhat dissatisfied  (2) 
+* Neutral  (3) 
+* Somewhat satisfied  (4) 
+* Very satisfied  (5) 
+
+## Place Attachment
+
+How long have you lived at your current address?
+
+* Less than 1 year
+* 1-5 years
+* 6-10 years
+* 11+ years
+
+How long have you lived in the area (within about 25 miles of your current residence)?
+
+* Same as current address
+* Less than 1 year
+* 1-5 years
+* 6-10 years
+* 11+ years
+
+_Respondents selecting "Same as current address" were assigned their time at their current address_
+
+\clearpage
+
+# Sample Accounting and Representativeness
+
+\needspace{0.3\textheight}
+
+**Table S1: Sample Accounting**
+
+```{r}
+#| message: false
+#| echo: false
+
+tt(sampleFunnel)
+```
+
+\needspace{0.4\textheight}
+
+**Table S2: Sample Compared to South Carolina Adults (%)**
+
+```{r}
+#| message: false
+#| echo: false
+
+sampleCompTab <- data.frame(sampleComp$Characteristic, sprintf("%.1f", sampleComp$Sample),
+                            sprintf("%.1f", sampleComp$Weighted), sprintf("%.1f", sampleComp$ACS))
+names(sampleCompTab) <- c("Characteristic", "Sample", "Weighted Sample", "ACS 2024")
+tt(sampleCompTab, notes = "ACS 2024 one-year estimates for South Carolina adults age 18 and older. Weights are raked on sex, age, race, and education.")
+```
+
+# Robustness Checks
+
+\needspace{0.3\textheight}
+
+**Table S3: Correlations among Community, Social Capital, and Residence Measures**
+
+```{r}
+#| message: false
+#| echo: false
+
+corTab <- data.frame(Measure = paste0("(", 1:nrow(commCor), ") ", cm[rownames(commCor)]),
+                     matrix(sprintf("%.2f", commCor), nrow = nrow(commCor)))
+names(corTab) <- c("Measure", paste0("(", 1:nrow(commCor), ")"))
+tt(corTab) %>% style_tt(fontsize = 0.8)
+```
+
+\clearpage
+
+**Table S4: Robustness Checks for Support for a Property Buyout Program**
+
+```{r}
+#| message: false
+#| echo: false
+
+modelsummary(robustModels,
+             vcov = list(clusterVcov, NULL, clusterVcov, clusterVcov, clusterVcov, clusterVcov),
+             stars = starsSet, coef_map = cm[names(cm) != "(Intercept)"], gof_map = gm,
+             estimate = "{estimate}{stars} ({std.error})", statistic = NULL,
+             notes = "County-clustered standard errors in parentheses, except the ordered logit model. Ordered logit cutpoints and constants not shown.") %>%
+  style_tt(fontsize = 0.6)
+```
+
+\clearpage
+
+**Table S5: Alternative Measures of Flood Experience and Exposure**
+
+```{r}
+#| message: false
+#| echo: false
+
+cmAlt <- c(cm[1:3], "floodRecent" = "Flood within ~5 Years", "floodOlder" = "Flood More than ~5 Years Ago",
+           "floodMore" = "Flooding More Frequent (dummy)",
+           "floodDA" = "Past-Year Flood Disruption", "floodSAFE" = "Past-Year Flood Safety Risk",
+           cm[4:19])
+modelsummary(altModels, vcov = clusterVcov, stars = starsSet, coef_map = cmAlt, gof_map = gm,
+             estimate = "{estimate}{stars} ({std.error})", statistic = NULL,
+             notes = "County-clustered standard errors in parentheses. Speeders completed the survey in less than one-third of the median time.") %>%
+  style_tt(fontsize = 0.6)
+```
+
+\clearpage
+
+**Table S6: Exploratory Factor Analysis of Social Capital Items (Oblimin Rotation)**
+
+```{r}
+#| message: false
+#| echo: false
+
+itemLabs <- c("Bonding: friends in community", "Bonding: old classmates in contact", "Bonding: coworkers trusted",
+              "Bonding: relatives trusted", "Bonding: ties with broad connections", "Bonding: ties with professional jobs",
+              "Bonding: coworkers who would help", "Bonding: friends who would help",
+              "Bridging: cultural/religious groups", "Bridging: governmental/political groups",
+              "Bridging: groups with broad connections", "Bridging: groups with influence",
+              "Bridging: cultural groups represent me", "Bridging: governmental groups represent me",
+              "Bridging: cultural groups would help", "Bridging: governmental groups would help")
+L <- unclass(scEFA$loadings)
+bondCol <- which.max(colSums(L[1:8, ]^2)); bridgeCol <- setdiff(1:2, bondCol)
+efaTab <- data.frame(Item = itemLabs, Bonding = sprintf("%.2f", L[, bondCol]), Bridging = sprintf("%.2f", L[, bridgeCol]))
+tt(efaTab, notes = sprintf("Maximum likelihood factor analysis with two factors. Factor correlation = %.2f.", scEFA$Phi[1, 2])) %>%
+  style_tt(fontsize = 0.8)
+```
+
+\clearpage
+
+# Supplementary Analysis: Homeowners' Willingness to Accept a Buyout
+
+In addition to support for a buyout program, the survey included an exploratory experiment on homeowners' willingness to accept a buyout. Respondents were presented with a randomly generated number of hypothetical days of disruptive flooding events in their community in a year, and homeowners were then asked how likely they would be to accept a buyout of their home.
+
+> Imagine that over the next few years, disruptive flooding events begin to occur in your community [_5-200_] days a year.
+
+> With the above number of disruptive flooding days per year, how likely would you be to accept a property buyout of your home?
+
+The likelihood to accept was measured on a 1 (very unlikely) to 5 (very likely) scale, with a mean of `r round(mean(acceptData$buyoutSupportOwn), 2)` among the `r nrow(acceptData)` homeowners with complete data. The number of flood days was drawn from a uniform distribution, and so the median respondent was assigned `r median(acceptData$floodDays)` days, and few respondents were assigned a number of days that is realistic for most communities. As shown in Figure S1, willingness to accept a buyout was high across the range of flood days. Among homeowners assigned the lowest quartile of flood days, `r round(100*acceptByQ["Q1"], 0)`% were somewhat or very likely to accept a buyout, compared to `r round(100*acceptByQ["Q4"], 0)`% among those assigned the highest quartile.
+
+**Figure S1: Histograms of Number of Flood Days and Likelihood of Accepting Buyout**
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| layout-ncol: 2
+
+ggplot(acceptData, aes(x = floodDays)) +
+  geom_histogram(bins = 15, fill = "black", color = "white") +
+  labs(title = "Number of Flood Days", x = "", y = "Count") +
+  theme_minimal()
+
+ggplot(acceptData, aes(x = buyoutSupportOwn)) +
+  geom_histogram(bins = 15, fill = "black", color = "white") +
+  scale_x_continuous(
+    breaks = c(1, 2, 3, 4, 5),
+    labels = c("Very\n Unlikely", "Somewhat \n Unlikely", "Neutral", "Somewhat \n Likely", "Very\n Likely")
+  ) +
+  labs(title = "Likely to Accept Buyout", x = "", y = "") +
+  theme_minimal()
+```
+
+The OLS results are presented in Table S7. The relationship between the number of flood days and willingness to accept a buyout is positive, but it is not significant in the bivariate model and is only marginally significant in the full model. In the full model, an increase of 100 flood days is associated with a `r sprintf("%.2f", acceptB)` increase in willingness to accept (95% CI `r sprintf("%.2f", acceptCI[1])` to `r sprintf("%.2f", acceptCI[2])`). Because the number of flood days was randomized, baseline support for a buyout program, which was measured before the experiment, can be included as a pre-treatment covariate to improve the precision of the estimate without biasing it. When baseline support is included, an increase of 100 flood days is associated with a `r sprintf("%.2f", acceptBaseCT[1])` increase in willingness to accept (95% CI `r sprintf("%.2f", acceptBaseCI[1])` to `r sprintf("%.2f", acceptBaseCI[2])`). As such, there is some evidence of a modest positive relationship, though this specification was not preregistered and should be interpreted with caution. Additionally, willingness to accept was high across conditions, which suggests that the threshold at which homeowners would consider a buyout likely sits below the range of flood days we presented. Future research should use a lower and more realistic range of flood days.
+
+\clearpage
+
+**Table S7: OLS Analysis of Homeowners' Willingness to Accept a Buyout**
+
+```{r}
+#| message: false
+#| echo: false
+
+cmAccept <- c("floodDays100" = "Flood Days (100s)", "buyoutSupport" = "Baseline Support for Buyout Program", cm)
+modelsummary(acceptModels, vcov = clusterVcov, stars = starsSet, coef_map = cmAccept, gof_map = gm,
+             estimate = "{estimate}{stars} ({std.error})", statistic = NULL,
+             notes = "County-clustered standard errors in parentheses. Homeowners only.") %>%
+  style_tt(fontsize = 0.8)
+```

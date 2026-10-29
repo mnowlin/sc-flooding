@@ -32,3 +32,5 @@ presentation/Email addresses for colleagues on your MPSA conference session.pdf
 
 # OS
 .DS_Store
+
+**/*.quarto_ipynb
