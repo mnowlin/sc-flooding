@@ -10,6 +10,7 @@ american-political-science-association.csl
 # Stale root renders (current output belongs in _output/)
 /flood-risk.pdf
 /flood-risk.docx
+/supplemental-materials.html
 
 # Exploratory / prior-draft material (kept local only)
 /archive/
@@ -18,6 +19,9 @@ american-political-science-association.csl
 presentation/*_files/
 presentation/*.html
 presentation/Email addresses for colleagues on your MPSA conference session.pdf
+
+# Broken renv library moved aside (regenerable; delete when no longer needed)
+renv/library-broken-*/
 
 # R / RStudio
 .Rproj.user/

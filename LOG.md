@@ -31,6 +31,27 @@ year (7–200).
 
 ## Session History
 
+### Session 5 — 2026-11-11 (renv repair, descriptives table, citations)
+
+- renv library corrupted again by OneDrive sync (package folders split into
+  nested stubs plus `"<pkg> 2"` duplicates; `rmarkdown` not found). Moved the
+  broken library to `renv/library-broken-2026-11-11/` (gitignored; safe to
+  delete) and ran `renv::restore()` from the cache. `renv::status()` clean.
+  Consider moving the renv library outside OneDrive (`RENV_PATHS_LIBRARY`).
+- `tbl-descript`: no longer splits binary vs. continuous/ordinal variables;
+  reports mean, SD, min, and max for every variable.
+- Resolved all `@MISSING-*` placeholder citations: Shao 2017
+  (`shaoSequentialModelLink2017`), Mah 2024 (`mahPublicPreferencesSealevel2024`),
+  Bax 2025 (`baxEmotionsTrustExpectations2025`), Mallette 2021
+  (`malletteUnderstandingPreferencesCoastal2021`), Jones & Clark 2014
+  (`jonesSocialCapitalPublic2014`). Manuscript renders with no citeproc
+  warnings.
+- Discussion: Shao et al. (2017) no longer cited for the "push effect" of flood
+  risk; now cited for the null riverine-risk result (objective risk works only
+  through risk perceptions).
+- Remaining: Houser 2022 key `PublicSupportLocal` still lacks author/year
+  metadata.
+
 ### Session 4 — 2026-10-29 (Review revisions: moderate and minor issues)
 
 - `_output/` (rendered html/pdf/docx) now tracked in git.
